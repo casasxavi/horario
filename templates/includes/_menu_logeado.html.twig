@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{path('app_index')}}">Control horario</a>
+    <button class="navbar-toggler p-0 border-0"
+      type="button"
+      data-toggle="offcanvas">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="{{path('horario_index')}}">Horario</a></li>
+  
+        <li class="nav-item"><a class="nav-link" href="{{path('agenda_index')}}">Agenda</a></li>        
+   
+        <li class="nav-item"><a class="nav-link" href="{{path('evento_index')}}">Dietario</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="#">Correo</a></li>
+      </ul>
+      <font class="navbar-brand">{{app.user.email}}</font>
+      <form class="form-inline">
+          <input class="form-control mr-sm-2"
+            type="text"
+            placeholder="Buscar"
+            aria-label="Search" />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Buscar
+          </button>
+        </form>
+        &nbsp;&nbsp;
+        <div class="d-md-flex my-2 my-lg-0">
+          <a class="btn btn-outline-success mr-2 w-100 mb-3 mb-sm-0" title="Cerra Sesión" href="{{path('app_logout')}}">
+              Salir
+            </a>
+        </div>    
+  </nav>

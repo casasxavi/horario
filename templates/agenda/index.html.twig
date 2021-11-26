@@ -1,0 +1,75 @@
+{% extends 'base_logeado.html.twig' %}
+{% block title %}
+    Agenda
+{% endblock %}
+
+{% block contenedor_principal %}
+{% include 'includes/_messages.html.twig' %}
+<div class="my-3 p-3 bg-white rounded box-shadow">
+    <h6 class="border-bottom border-gray pb-2 mb-0">
+        Contactos
+    </h6>
+</div>
+<div>
+    <a class="btn btn-outline-success mr-2 w-10 mb-3 mb-sm-0" title="Añadir contacto" href="{{path('agenda_new')}}">
+        Nuevo Contacto
+    </a>
+</div>
+<div class="media text-muted pt-3">
+    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <div class="panel-body">
+        </div>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Telefono_fijo</th>
+            <th>Telefono_movil</th>
+            <th>Fax</th>
+            <th>Email</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for agenda in agendas %}
+        <tr>
+            <td>{{ agenda.id }}</td>
+            <td>{{ agenda.nombre }}</td>
+            <td>{{ agenda.telefonoFijo }}</td>
+            <td>{{ agenda.telefonoMovil }}</td>
+            <td>{{ agenda.fax }}</td>
+            <td>{{ agenda.email }}</td>
+            <td>
+                <div class="d-flex">
+                    <a href="{{path('agenda_edit', {"id": agenda.id})}}" class="btn btn-link mg-3">
+                        <span class="oi oi-pencil" title="Editar" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <form method="post" action="{{ path('agenda_delete', {'id': agenda.id}) }}" onsubmit="return confirm('Seguro que desea eliminar este contacto?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ agenda.id) }}">
+                        <button class="btn btn-link mg-3"><span class="oi oi-delete" title="Eliminar" aria-hidden="true"></span></button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="7">No hay contactos en la Agenda</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="navigation">
+    <div class="text-center">
+        {{ knp_pagination_render(agendas) }}
+    </div>
+</div>
+{% endblock %}

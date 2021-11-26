@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<title>Horario</title>
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div class="panel-heading">Saldo Mensual:
+	<span>&nbsp;&nbsp;<strong>{{ saldoMensual }}</strong></span>
+</div>
+<br>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Día &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+			<th>Fecha&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+			<th>Entrada&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+			<th>Salida&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+			<th>Saldo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for horario in horarios %}
+		<tr>
+			<td>
+				{% if horario.dia == "Monday" %}
+				Lunes
+				{% elseif horario.dia == "Tuesday" %}
+				Martes
+				{% elseif horario.dia == "Wednesday" %}
+				Miércoles
+				{% elseif horario.dia == "Thursday" %}
+				Jueves
+				{% elseif horario.dia == "Friday" %}
+				Viernes
+				{% elseif horario.dia == "Saturday" %}
+				Sábado
+				{% else %}
+				Domingo
+				{% endif %}
+			</td>
+			<td>{{ horario.fecha ? horario.fecha|date('d/m/Y') : '' }}</td>
+			<td>{{ horario.hora_entrada ? horario.hora_entrada|date('H:i') : '' }}</td>
+			{% if horario.hora_salida is null %}
+			<td class="sin_marcaje">Sin marcaje</td>
+			{% else %}
+			<td>{{ horario.hora_salida ? horario.hora_salida|date('H:i') : '' }}</td>
+			{% endif %}
+			{% if horario.hora_salida is null %}
+			<td>--------</td>
+			{% else %}
+			{% if (horario.saldo) < (horario.hora_saldo) %}
+			<td class="negativo">{{ horario.saldo ? horario.saldo|date('H:i') : '' }}</td>
+			{% else %}
+			<td>{{ horario.saldo ? horario.saldo|date('H:i') : '' }}</td>
+			{% endif %}
+			{% endif %}
+			<td>
+			</td>
+		</tr>
+		{% else %}
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}

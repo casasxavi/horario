@@ -1,0 +1,10 @@
+{% extends 'base_logeado.html.twig' %}
+
+{% block contenedor_principal %}
+<div class="col-4 offset-3">
+    {% include 'includes/_messages.html.twig' %}
+    <h1>Nuevo horario</h1>
+
+    {{ include('horario/_form.html.twig') }}
+</div>
+{% endblock %}

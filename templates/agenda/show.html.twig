@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<title>Agenda</title>
+
+{% block body %}
+    <h1>Agenda</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ agenda.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ agenda.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Telefono_fijo</th>
+                <td>{{ agenda.telefonoFijo }}</td>
+            </tr>
+            <tr>
+                <th>Telefono_movil</th>
+                <td>{{ agenda.telefonoMovil }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ agenda.fax }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ agenda.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('agenda_index') }}">back to list</a>
+
+    <a href="{{ path('agenda_edit', {'id': agenda.id}) }}">edit</a>
+
+    {{ include('agenda/_delete_form.html.twig') }}
+{% endblock %}

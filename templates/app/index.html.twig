@@ -1,0 +1,62 @@
+{% extends 'base_app.html.twig' %}
+
+{% block title %}Control Horario{% endblock %}
+
+{% block contenedor_principal %}
+<br><br><br><br><br><br>
+
+
+<div class="container-fluid>
+  <div class="media-body pb-3 mb-0 small">  
+    <div class="panel-body">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col">
+              <div class="thumbnail">
+                <img src="{{asset('images/horario.png')}}">
+                <div class="caption text-center">
+                  <h4>Horario</h4>
+                  <p><a href="{{path('horario_index')}}" class="btn btn-outline-success mr-2 w-10 mb-3 mb-sm-0" role="button">Ver</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="thumbnail">
+                <img src="{{asset('images/agenda.png')}}">
+                <div class="caption text-center">
+                  <h4>Agenda</h4>
+                  <p><a href="{{ path('agenda_index') }}" class="btn btn-outline-success mr-2 w-10 mb-3 mb-sm-0" role="button">Ver</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="thumbnail">
+                <img src="{{asset('images/dietario.png')}}">
+                <div class="caption text-center">
+                  <h4>Dietario</h4>
+                  <p><a href="{{path('evento_index')}}" class="btn btn-outline-success mr-2 w-10 mb-3 mb-sm-0" role="button">Ver</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="thumbnail">
+                <img src="{{asset('images/correo.png')}}">
+                <div class="caption text-center">
+                  <h4>Correo</h4>
+                  <p><a href="#" class="btn btn-outline-success mr-2 w-10 mb-3 mb-sm-0" role="button">Ver</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

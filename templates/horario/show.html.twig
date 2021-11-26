@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<title>Horario</title>
+
+{% block body %}
+    <h1>Horario</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ horario.id }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ horario.fecha ? horario.fecha|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HoraEntrada</th>
+                <td>{{ horario.horaEntrada ? horario.horaEntrada|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HoraSalida</th>
+                <td>{{ horario.horaSalida ? horario.horaSalida|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HoraSaldo</th>
+                <td>{{ horario.horaSaldo ? horario.horaSaldo|date('H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('horario_index') }}">back to list</a>
+
+    <a href="{{ path('horario_edit', {'id': horario.id}) }}">edit</a>
+
+    {{ include('horario/_delete_form.html.twig') }}
+{% endblock %}
